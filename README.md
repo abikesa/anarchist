@@ -5,6 +5,12 @@
                                                 3. Hardware
 
 
+### Dionysus 1, 2, 3
+### Sing O Muse! 4
+### Apollo
+
+
+# Essay
 Nietzsche’s shift from the duality of the Apollonian and Dionysian to a more exclusive focus on the Dionysian reflects his evolving philosophical perspective and his eventual disillusionment with the overly structured, rational side represented by the Apollonian. In "The Birth of Tragedy" (1871), Nietzsche introduces these concepts to articulate a dichotomy between the rational, ordered, and beautiful (Apollonian) and the chaotic, ecstatic, and sublime (Dionysian). This framework was influenced by the works of Kant and Schopenhauer, who emphasized the interplay of opposing forces leading to a higher synthesis.
 
 By the time he wrote "Beyond Good and Evil" (1886) and other later works, Nietzsche had moved away from the Apollonian-Dionysian dichotomy. There are a few reasons for this transition:
