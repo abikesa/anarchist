@@ -5,8 +5,8 @@
                                                 3. Hardware
 
 
-### Dionysus 1, 2, 3
-### Sing O Muse! 4
+### Dionysus 1, 2, [3](https://en.wikisource.org/wiki/An_Attempt_at_Self-Criticism)
+### Sing O Muse! [4](https://abikesa.github.io/why-python/)
 ### Apollo
 
 
@@ -21,6 +21,6 @@ By the time he wrote "Beyond Good and Evil" (1886) and other later works, Nietzs
 
 3. **Schopenhauerian Influence**: Initially influenced by Schopenhauer’s philosophy, which emphasized the world as representation (Apollonian) and the world as will (Dionysian), Nietzsche eventually critiqued and moved beyond Schopenhauer’s pessimism. He found a more affirmative vision in the Dionysian, which celebrated the will to life and artistic creation without the need for the Apollonian counterbalance.
 
-4. **Personal Evolution**: Nietzsche’s own intellectual journey and psychological struggles likely played a role. His break with Wagner, the symbol of his early Apollonian-Dionysian synthesis, marked a significant personal and philosophical shift. Wagner’s later work, which Nietzsche saw as nationalistic and decadent, contrasted sharply with the pure artistic vision Nietzsche once admired.
+4. `Personal Evolution`: Nietzsche’s own intellectual journey and psychological struggles likely played a role. His break with Wagner, the symbol of his early Apollonian-Dionysian synthesis, marked a significant personal and philosophical shift. Wagner’s later work, which Nietzsche saw as nationalistic and decadent, contrasted sharply with the pure artistic vision Nietzsche once admired.
 
 In summary, Nietzsche’s early embrace of the Apollonian-Dionysian dichotomy was a stepping stone towards his later, more radical philosophical outlook. He wasn’t embarrassed by his early work but saw it as part of his philosophical development. By focusing on the Dionysian, Nietzsche rejected the need for the Apollonian synthesis, seeing it as a limitation rather than a necessary balance. His mature philosophy sought to transcend traditional dualities and affirm the chaotic, creative forces of life, unbound by the constraints of rationality and order.
