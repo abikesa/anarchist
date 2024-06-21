@@ -1,3 +1,6 @@
+![](https://i.insider.com/55ce42cddd089509798b45f3?width=1048&format=jpeg)
+                                         
+                                         
                                          1. Data
                                                 \
                                   2. Compute -> 4. Personal -> 5. Interpersonal -> 6. Group
@@ -5,7 +8,7 @@
                                                 3. Hardware
 
 
-### Dionysus 1, 2, [3](https://en.wikisource.org/wiki/An_Attempt_at_Self-Criticism)
+### Dionysus [1](https://abikesa.github.io/zarathustra/), 2, [3](https://en.wikisource.org/wiki/An_Attempt_at_Self-Criticism)
 ### Sing O Muse! [4](https://abikesa.github.io/why-python/)
 ### Apollo 5, 6
 
