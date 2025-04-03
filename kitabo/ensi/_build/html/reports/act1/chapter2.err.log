@@ -1,0 +1,168 @@
+Traceback (most recent call last):
+  File "/Users/apollo/Documents/Chords/myenv/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/apollo/Documents/Chords/myenv/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/apollo/Documents/Chords/myenv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.11/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/apollo/Documents/Chords/myenv/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/apollo/Documents/Chords/myenv/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/apollo/Documents/Chords/myenv/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+import networkx as nx
+
+# Define the neural network layers
+def define_layers():
+    return {
+        'Tragedy (Pattern Recognition)': ['Cosmology', 'Geology', 'Biology', 'Ecology', "Symbiotology", 'Teleology'],
+        'History (Resources)': ['Resources'],  
+        'Epic (Negotiated Identity)': ['Faustian Bargain', 'Islamic Finance'],  
+        'Drama (Self vs. Non-Self)': ['Darabah', 'Sharakah', 'Takaful'],  
+        "Comedy (Resolution)": ['Cacophony', 'Outside', 'Ukhuwah', 'Inside', 'Symphony']  
+    }
+
+# Assign colors to nodes
+def assign_colors():
+    color_map = {
+        'yellow': ['Resources'],  
+        'paleturquoise': ['Teleology', 'Islamic Finance', 'Takaful', 'Symphony'],  
+        'lightgreen': ["Symbiotology", 'Sharakah', 'Outside', 'Inside', 'Ukhuwah'],  
+        'lightsalmon': ['Biology', 'Ecology', 'Faustian Bargain', 'Darabah', 'Cacophony'],
+    }
+    return {node: color for color, nodes in color_map.items() for node in nodes}
+
+# Define edges
+def define_edges():
+    return [
+        ('Cosmology', 'Resources'),
+        ('Geology', 'Resources'),
+        ('Biology', 'Resources'),
+        ('Ecology', 'Resources'),
+        ("Symbiotology", 'Resources'),
+        ('Teleology', 'Resources'),
+        ('Resources', 'Faustian Bargain'),
+        ('Resources', 'Islamic Finance'),
+        ('Faustian Bargain', 'Darabah'),
+        ('Faustian Bargain', 'Sharakah'),
+        ('Faustian Bargain', 'Takaful'),
+        ('Islamic Finance', 'Darabah'),
+        ('Islamic Finance', 'Sharakah'),
+        ('Islamic Finance', 'Takaful'),
+        ('Darabah', 'Cacophony'),
+        ('Darabah', 'Outside'),
+        ('Darabah', 'Ukhuwah'),
+        ('Darabah', 'Inside'),
+        ('Darabah', 'Symphony'),
+        ('Sharakah', 'Cacophony'),
+        ('Sharakah', 'Outside'),
+        ('Sharakah', 'Ukhuwah'),
+        ('Sharakah', 'Inside'),
+        ('Sharakah', 'Symphony'),
+        ('Takaful', 'Cacophony'),
+        ('Takaful', 'Outside'),
+        ('Takaful', 'Ukhuwah'),
+        ('Takaful', 'Inside'),
+        ('Takaful', 'Symphony')
+    ]
+
+# Define black edges (1 → 7 → 9 → 11 → [13-17])
+black_edges = [
+    (4, 7), (7, 9), (9, 11), (11, 13), (11, 14), (11, 15), (11, 16), (11, 17)
+]
+
+# Calculate node positions
+def calculate_positions(layer, x_offset):
+    y_positions = np.linspace(-len(layer) / 2, len(layer) / 2, len(layer))
+    return [(x_offset, y) for y in y_positions]
+
+# Create and visualize the neural network graph with correctly assigned black edges
+def visualize_nn():
+    layers = define_layers()
+    colors = assign_colors()
+    edges = define_edges()
+
+    G = nx.DiGraph()
+    pos = {}
+    node_colors = []
+
+    # Create mapping from original node names to numbered labels
+    mapping = {}
+    counter = 1
+    for layer in layers.values():
+        for node in layer:
+            mapping[node] = f"{counter}. {node}"
+            counter += 1
+
+    # Add nodes with new numbered labels and assign positions
+    for i, (layer_name, nodes) in enumerate(layers.items()):
+        positions = calculate_positions(nodes, x_offset=i * 2)
+        for node, position in zip(nodes, positions):
+            new_node = mapping[node]
+            G.add_node(new_node, layer=layer_name)
+            pos[new_node] = position
+            node_colors.append(colors.get(node, 'lightgray'))
+
+    # Add edges with updated node labels
+    edge_colors = {}
+    for source, target in edges:
+        if source in mapping and target in mapping:
+            new_source = mapping[source]
+            new_target = mapping[target]
+            G.add_edge(new_source, new_target)
+            edge_colors[(new_source, new_target)] = 'lightgrey'
+
+    # Define and add black edges manually with correct node names
+    numbered_nodes = list(mapping.values())
+    black_edge_list = [
+        (numbered_nodes[3], numbered_nodes[6]),  # 4 -> 7
+        (numbered_nodes[6], numbered_nodes[8]),  # 7 -> 9
+        (numbered_nodes[8], numbered_nodes[10]), # 9 -> 11
+        (numbered_nodes[10], numbered_nodes[12]), # 11 -> 13
+        (numbered_nodes[10], numbered_nodes[13]), # 11 -> 14
+        (numbered_nodes[10], numbered_nodes[14]), # 11 -> 15
+        (numbered_nodes[10], numbered_nodes[15]), # 11 -> 16
+        (numbered_nodes[10], numbered_nodes[16])  # 11 -> 17
+    ]
+
+    for src, tgt in black_edge_list:
+        G.add_edge(src, tgt)
+        edge_colors[(src, tgt)] = 'black'
+
+    # Draw the graph
+    plt.figure(figsize=(12, 8))
+    nx.draw(
+        G, pos, with_labels=True, node_color=node_colors, 
+        edge_color=[edge_colors.get(edge, 'lightgrey') for edge in G.edges],
+        node_size=3000, font_size=9, connectionstyle="arc3,rad=0.2"
+    )
+    
+    plt.title("Self-Similar Micro-Decisions", fontsize=18)
+    plt.show()
+
+# Run the visualization
+visualize_nn()
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 3[39m
+[32m      1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mnp[39;00m
+[32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mmatplotlib[39;00m[34;01m.[39;00m[34;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mplt[39;00m
+[32m----> [39m[32m3[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnetworkx[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mnx[39;00m
+[32m      5[39m [38;5;66;03m# Define the neural network layers[39;00m
+[32m      6[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mdefine_layers[39m():
+
+[31mModuleNotFoundError[39m: No module named 'networkx'
+
