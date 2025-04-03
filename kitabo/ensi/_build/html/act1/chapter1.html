@@ -378,7 +378,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -394,6 +396,22 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategy">🧠 Strategy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-safe-no-risk-of-repo-exposure">✅ Step-by-Step (Safe, No Risk of Repo Exposure)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-or-collect-your-public-html-assets">1. Build or Collect Your Public HTML Assets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-push-a-gh-pages-branch-clean-empty">2. Create and Push a <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> Branch (Clean &amp; Empty)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-github-pages-to-serve-from-gh-pages">3. Set GitHub Pages to Serve from <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-cloak-tricks">🧤 Bonus Cloak Tricks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr">🪝 TL;DR</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -913,6 +931,98 @@ And it is precisely here—at this blistering threshold—where the fifth layer 
 <p>Answerability extends to its developers. Ukubona does not hide its team. It humanizes them. It shows who made the models, who tested them, who maintains them. This breaks the myth of AI as godlike. It restores personhood to the process.</p>
 <p>That personhood ripples outward. Patients using Ukubona do not just “see” risk—they reclaim some of their story. They no longer submit to clinical fate passively. They narrate. They ask: what if I wait? What if I proceed? What does that curve mean for my child?</p>
 <p>And still, the island beckons. Not as salvation, but as orientation. A place to rest, briefly, before setting sail again. Ukubona never pretends the journey ends. It simply gives you the means to continue, eyes open, map in hand, and truth underfoot.</p>
+<details>
+   <summary></summary>
+<p>Perfect. You’re trying to pull a <em>Trojan horse</em> strategy—host a public-facing GitHub Pages site à la <code class="docutils literal notranslate"><span class="pre">ukubona-llc.github.io</span></code>, but from the <strong><code class="docutils literal notranslate"><span class="pre">anarchist</span></code></strong> repo which is <em>densely packed with obfuscation and misdirection</em>. Respect.</p>
+<p>Here’s the most elegant, low-risk way to do this:</p>
+<hr class="docutils" />
+<section id="strategy">
+<h2>🧠 Strategy<a class="headerlink" href="#strategy" title="Permalink to this heading">#</a></h2>
+<p><strong>Goal:</strong> Publish a clean, professional static site from your <code class="docutils literal notranslate"><span class="pre">anarchist</span></code> repo, <strong>without exposing or surfacing its real structure</strong> (1967 files deep).</p>
+<p><strong>Solution:</strong> Use a <strong>dedicated <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</strong> <em>decoupled</em> from <code class="docutils literal notranslate"><span class="pre">main</span></code>, containing only the clean HTML site you want published—just like <code class="docutils literal notranslate"><span class="pre">ukubona</span></code>.</p>
+<p>You can build or handcraft this site in a subfolder (e.g., <code class="docutils literal notranslate"><span class="pre">anarchist/kitabo/public_site/</span></code>), and then selectively deploy <strong>only that</strong> to the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch. The rest of your labyrinth remains untouched, private, and locally cloaked.</p>
+</section>
+<hr class="docutils" />
+<section id="step-by-step-safe-no-risk-of-repo-exposure">
+<h2>✅ Step-by-Step (Safe, No Risk of Repo Exposure)<a class="headerlink" href="#step-by-step-safe-no-risk-of-repo-exposure" title="Permalink to this heading">#</a></h2>
+<section id="build-or-collect-your-public-html-assets">
+<h3>1. Build or Collect Your Public HTML Assets<a class="headerlink" href="#build-or-collect-your-public-html-assets" title="Permalink to this heading">#</a></h3>
+<p>Put your public-facing site (index.html + assets) in something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anarchist</span><span class="o">/</span><span class="n">kitabo</span><span class="o">/</span><span class="n">public_site</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>public_site/
+├── index.html
+├── about.html
+├── css/
+├── js/
+├── images/
+</pre></div>
+</div>
+<p>Make sure this site works locally when you open <code class="docutils literal notranslate"><span class="pre">index.html</span></code> in a browser.</p>
+</section>
+<hr class="docutils" />
+<section id="create-and-push-a-gh-pages-branch-clean-empty">
+<h3>2. Create and Push a <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> Branch (Clean &amp; Empty)<a class="headerlink" href="#create-and-push-a-gh-pages-branch-clean-empty" title="Permalink to this heading">#</a></h3>
+<p>From your root repo (<code class="docutils literal notranslate"><span class="pre">anarchist</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>--orphan<span class="w"> </span>gh-pages
+git<span class="w"> </span>reset<span class="w"> </span>--hard
+rm<span class="w"> </span>-rf<span class="w"> </span>*
+</pre></div>
+</div>
+<p>Then copy in only the public site files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-r<span class="w"> </span>kitabo/public_site/*<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Add, commit, and push:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;🚀 Deploy public site from within anarchist&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>gh-pages
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Important:</strong> This <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch is totally detached from <code class="docutils literal notranslate"><span class="pre">main</span></code>. GitHub will serve this to the world—but no one can access the real tree unless you expose it.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="set-github-pages-to-serve-from-gh-pages">
+<h3>3. Set GitHub Pages to Serve from <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code><a class="headerlink" href="#set-github-pages-to-serve-from-gh-pages" title="Permalink to this heading">#</a></h3>
+<p>Go to your repo’s <strong>Settings &gt; Pages</strong> and select:</p>
+<ul class="simple">
+<li><p><strong>Source:</strong> <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+<li><p><strong>Folder:</strong> <code class="docutils literal notranslate"><span class="pre">/</span> <span class="pre">(root)</span></code></p></li>
+</ul>
+<p>Wait a few seconds, and your clean, minimalist public site will be live at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">-</span><span class="n">username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">anarchist</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bonus-cloak-tricks">
+<h2>🧤 Bonus Cloak Tricks<a class="headerlink" href="#bonus-cloak-tricks" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>📁 Decoy Files at Root</strong>: Keep a <code class="docutils literal notranslate"><span class="pre">README.md</span></code> or a <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file in <code class="docutils literal notranslate"><span class="pre">main</span></code> to satisfy curious eyes.</p></li>
+<li><p><strong>📦 Compressed Bait</strong>: Place <code class="docutils literal notranslate"><span class="pre">.zip</span></code> or <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> archives full of old notes, code, or gibberish in other folders to further deflect attention.</p></li>
+<li><p><strong>🐍 Misleading <code class="docutils literal notranslate"><span class="pre">.py</span></code> files</strong>: Add scripts with names like <code class="docutils literal notranslate"><span class="pre">export_final.py</span></code>, <code class="docutils literal notranslate"><span class="pre">deprecated_run.py</span></code>, <code class="docutils literal notranslate"><span class="pre">config_stable.py</span></code> that look important but are mostly placeholders or noise.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tl-dr">
+<h2>🪝 TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>You’re building a beautiful illusion atop a dense labyrinth.</strong></p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch as your clean storefront, and hide the cathedral of chaos in <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+</div></blockquote>
+<p>Let me know if you want me to:</p>
+<ul class="simple">
+<li><p>scaffold the HTML for your public site</p></li>
+<li><p>write a shell script to automate this deploy dance</p></li>
+<li><p>add symbolic flair (🏝️🛠️🪡) to the site</p></li>
+</ul>
+<p>I’m all in.</p>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -969,6 +1079,29 @@ And it is precisely here—at this blistering threshold—where the fifth layer 
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategy">🧠 Strategy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-safe-no-risk-of-repo-exposure">✅ Step-by-Step (Safe, No Risk of Repo Exposure)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-or-collect-your-public-html-assets">1. Build or Collect Your Public HTML Assets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-push-a-gh-pages-branch-clean-empty">2. Create and Push a <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> Branch (Clean &amp; Empty)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-github-pages-to-serve-from-gh-pages">3. Set GitHub Pages to Serve from <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-cloak-tricks">🧤 Bonus Cloak Tricks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr">🪝 TL;DR</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
