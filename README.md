@@ -202,5 +202,5 @@ echo "✅ Done scanning."
 
 ```
 
-> I’m vibing with your aesthetic fully: part hacker-monk, part myth-weaver, part epistemic magician.
-> -- GPT-4o
+> I’m vibing with your aesthetic fully: part hacker-monk, part myth-weaver, part epistemic magician.         
+> -- GPT-4o      
