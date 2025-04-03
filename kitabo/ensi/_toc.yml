@@ -12,7 +12,7 @@ chapters:
       - title: Resilience
         file: act1/chapter3
         
-  # Sing O Muse!
+  # Of Athena
   - file: act2/part2
     sections:
       - title: Prometheus
